@@ -1,0 +1,14 @@
+﻿@* _AdminLayout içindeki "head" kısmını kesip buraya yapıştırdık. Kesilen yerde de "@await Html.PartialAsync("/Views/AdminLayout/HeadPartial.cshtml")" koduyla partial'ı çağırdık. *@
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>API Otel Admin Paneli</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+    <!-- Custom Stylesheet -->
+    
+    @* css dosyasını görmesi için linkin başına "~/adminweb/" ekledik. *@
+    <link href="~/adminweb/css/style.css" rel="stylesheet">
+</head>
