@@ -26,6 +26,15 @@ builder.Services.AddScoped<ITestimonialDAL, EfTestimonialDAL>()
 builder.Services.AddScoped<ISubscribeDAL, EfSubscribeDAL>()
                 .AddScoped<ISubscribeService, SubscribeManager>();
 
+//Cors: API'nin baþka kaynaklar tarafýndan consume edilmesini(tüketilmesini) saðlayan metot.
+builder.Services.AddCors(opt =>
+{
+    opt.AddPolicy("HotelApiCors", opts =>
+    {
+        opts.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+    });
+});
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -40,6 +49,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors("HotelApiCors");        //yukarýda yazdýðýmýz cors'u kullanmak için.
 
 app.UseAuthorization();
 
