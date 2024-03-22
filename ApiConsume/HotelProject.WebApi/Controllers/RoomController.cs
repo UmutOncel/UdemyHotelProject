@@ -1,7 +1,10 @@
-﻿using HotelProject.BusinessLayer.Abstract;
+﻿using AutoMapper;
+using HotelProject.BusinessLayer.Abstract;
+using HotelProject.DtoLayer.DTOs.RoomDTOs;
 using HotelProject.EntityLayer.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace HotelProject.WebApi.Controllers
 {
@@ -10,10 +13,12 @@ namespace HotelProject.WebApi.Controllers
     public class RoomController : ControllerBase
     {
         private readonly IRoomService _roomService;
+        private readonly IMapper _mapper;
 
-        public RoomController(IRoomService roomService)
+        public RoomController(IRoomService roomService, IMapper mapper)
         {
             _roomService = roomService;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -24,10 +29,15 @@ namespace HotelProject.WebApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddRoom(Room room) 
+        public IActionResult AddRoom(AddRoomDTO addRoomDTO) 
         {
-            _roomService.TInsert(room);
-            return Ok();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            var value = _mapper.Map<Room>(addRoomDTO);      //addRoomDTO -> Room
+            _roomService.TInsert(value);
+            return Ok("Başarıyla eklendi.");
         }
 
         [HttpDelete("{id}")]
@@ -39,10 +49,15 @@ namespace HotelProject.WebApi.Controllers
         }
 
         [HttpPut]
-        public IActionResult UpdateRoom(Room room) 
+        public IActionResult UpdateRoom(UpdateRoomDTO updateRoomDTO) 
         {
-            _roomService.TUpdate(room);
-            return Ok();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            var value = _mapper.Map<Room>(updateRoomDTO);
+            _roomService.TUpdate(value);
+            return Ok("Başarıyla güncellendi.");
         }
 
         [HttpGet("{id}")]
