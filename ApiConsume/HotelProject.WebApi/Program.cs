@@ -3,6 +3,8 @@ using HotelProject.BusinessLayer.Concrete;
 using HotelProject.DataAccessLayer.Abstract;
 using HotelProject.DataAccessLayer.Concrete;
 using HotelProject.DataAccessLayer.EntityFramework;
+using HotelProject.WebApi.Mapping;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +27,8 @@ builder.Services.AddScoped<ITestimonialDAL, EfTestimonialDAL>()
 
 builder.Services.AddScoped<ISubscribeDAL, EfSubscribeDAL>()
                 .AddScoped<ISubscribeService, SubscribeManager>();
+
+builder.Services.AddAutoMapper(typeof(Program));
 
 //Cors: API'nin baþka kaynaklar tarafýndan consume edilmesini(tüketilmesini) saðlayan metot.
 builder.Services.AddCors(opt =>
