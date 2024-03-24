@@ -1,0 +1,70 @@
+﻿
+@{
+    Layout = null;
+}
+
+@* sayfanın doğru çalışması için yönlendirmelere "~/hotel-html-template/" eklemeyi UNUTMA!!!! *@
+
+<!DOCTYPE html>
+<html lang="en">
+
+@await Component.InvokeAsync("Head")
+
+<body>
+    <div class="container-xxl bg-white p-0">
+        <!-- Spinner Start -->
+        @await Component.InvokeAsync("Spinner")
+        <!-- Spinner End -->
+
+        <!-- Header Start -->
+        @await Component.InvokeAsync("Navbar")
+        <!-- Header End -->
+
+        <!-- Carousel Start -->
+        @await Component.InvokeAsync("Slider")
+        <!-- Carousel End -->
+
+        <!-- Booking Start -->
+        @await Component.InvokeAsync("Reservation")
+        <!-- Booking End -->
+
+        <!-- About Start -->
+        @await Component.InvokeAsync("AboutUs")
+        <!-- About End -->
+
+        <!-- Room Start -->
+        @await Component.InvokeAsync("OurRooms")
+        <!-- Room End -->
+
+        <!-- Video Start -->
+        @await Component.InvokeAsync("Trailer")
+        <!-- Video Start -->
+
+        <!-- Service Start -->
+        @await Component.InvokeAsync("Service")
+        <!-- Service End -->
+
+        <!-- Testimonial Start -->
+        @await Component.InvokeAsync("Testimonial")
+        <!-- Testimonial End -->
+
+        <!-- Team Start -->
+        @await Component.InvokeAsync("Team")
+        <!-- Team End -->
+
+        <!-- Newsletter Start -->
+        @await Html.PartialAsync("/Views/Default/SubscribePartial.cshtml")
+        <!-- Newsletter Start -->
+
+        <!-- Footer Start -->
+        @await Component.InvokeAsync("Footer")
+        <!-- Footer End -->
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+
+    @await Component.InvokeAsync("Scripts")
+</body>
+
+</html>
