@@ -1,0 +1,68 @@
+﻿@model List<ResultBookingDTO>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/_AdminLayout.cshtml";
+    int count = 0;
+}
+
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-body">
+            <div class="card-title" style="display:flex; justify-content:space-between; align-items:center">
+                <h4>Rezervasyon Listesi</h4>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Ad Soyad</th>
+                            <th>Giriş Tarihi</th>
+                            <th>Çıkış Tarihi</th>
+                            <th>Durum</th>
+                            <th>Onayla</th>
+                            <th>Beklet</th>
+                            <th>İptal Et</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            count++;
+                            <tr>
+                                <td>@count</td>
+                                <td>@item.Name</td>
+                                <td>@item.CheckIn.ToShortDateString()</td>
+                                <td>@item.CheckOut.ToShortDateString()</td>
+                                <td>
+                                    @if (item.Status == "Onaylandı")
+                                    {
+                                        <span class="badge badge-success px-2">@item.Status</span>
+                                    }
+                                    else if (item.Status == "Onay Bekliyor")
+                                    {
+                                        <span class="badge badge-primary px-2">@item.Status</span>
+                                    }
+                                    else if (item.Status == "İptal Edildi")
+                                    {
+                                        <span class="badge badge-danger px-2">@item.Status</span>
+                                    }
+                                </td>
+                                <td>
+                                    <a asp-controller="AdminBooking" asp-action="ChangeBookingStatusToApproved" asp-route-id="@item.BookingID" type="button" class="btn mb-1 btn-rounded btn-outline-success">Onayla</a>
+                                </td>
+                                <td>
+                                    <a asp-controller="AdminBooking" asp-action="ChangeBookingStatusToPended" asp-route-id="@item.BookingID" type="button" class="btn mb-1 btn-rounded btn-outline-primary">Beklet</a>
+                                </td>
+                                <td>
+                                    <a asp-controller="AdminBooking" asp-action="ChangeBookingStatusToRejected" asp-route-id="@item.BookingID" type="button" class="btn mb-1 btn-rounded btn-outline-danger">İptal Et</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

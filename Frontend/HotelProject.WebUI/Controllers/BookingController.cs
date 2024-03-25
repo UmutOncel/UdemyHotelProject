@@ -28,7 +28,7 @@ namespace HotelProject.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> AddBooking(AddBookingDTO addBookingDTO) 
         {
-            addBookingDTO.Status = "Onay Bekliyor.";
+            addBookingDTO.Status = "Onay Bekliyor";
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(addBookingDTO);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
