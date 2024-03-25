@@ -1,0 +1,89 @@
+﻿@model AddBookingDTO
+
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h6 class="section-title text-center text-primary text-uppercase">Oda Rezervasyonu Yap</h6>
+            <h1 class="mb-5"><span class="text-primary text-uppercase">Lüks Bir Oda</span> Rezervasyon Yap</h1>
+        </div>
+        <div class="row g-5">
+            <div class="col-lg-6">
+                <div class="row g-3">
+                    <div class="col-6 text-end">
+                        <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.1s" src="~/hotel-html-template/img/about-1.jpg" style="margin-top: 25%;">
+                    </div>
+                    <div class="col-6 text-start">
+                        <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.3s" src="~/hotel-html-template/img/about-2.jpg">
+                    </div>
+                    <div class="col-6 text-end">
+                        <img class="img-fluid rounded w-50 wow zoomIn" data-wow-delay="0.5s" src="~/hotel-html-template/img/about-3.jpg">
+                    </div>
+                    <div class="col-6 text-start">
+                        <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.7s" src="~/hotel-html-template/img/about-4.jpg">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="wow fadeInUp" data-wow-delay="0.2s">
+                    <form asp-controller="Booking" asp-action="AddBooking" method="post" enctype="multipart/form-data">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input asp-for=Name type="text" class="form-control" id="name" placeholder="Ad Soyad">
+                                    <label asp-for=Name for="name">Ad Soyad</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input asp-for=Mail type="email" class="form-control" id="email" placeholder="Mail Adresi">
+                                    <label asp-for=Mail for="email">Mail Adresi</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating date" id="date3" data-target-input="nearest">
+                                    <input asp-for=CheckIn type="datetime-local" class="form-control datetimepicker-input" id="checkin" placeholder="Giriş Tarihi" data-target="#date3" data-toggle="datetimepicker" />
+                                    <label asp-for=CheckIn for="checkin">Giriş Tarihi</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating date" id="date4" data-target-input="nearest">
+                                    <input asp-for="CheckOut" type="datetime-local" class="form-control datetimepicker-input" id="checkout" placeholder="Çıkış Tarihi" data-target="#date4" data-toggle="datetimepicker" />
+                                    <label asp-for="CheckOut" for="checkout">Çıkış Tarihi</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input asp-for=AdultCount type="number" class="form-control" id="select1" placeholder="Ad Soyad">
+                                    <label asp-for=AdultCount for="select1">Yetişkin Sayısı</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <div class="form-floating">
+                                        <input asp-for=ChildCount type="number" class="form-control" id="select2" placeholder="Ad Soyad">
+                                        <label asp-for=ChildCount for="select2">Çocuk Sayısı</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input asp-for=RoomCount type="number" class="form-control" id="select3" placeholder="Ad Soyad">
+                                    <label asp-for=RoomCount for="select3">Oda Sayısı</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <textarea asp-for=SpecialRequest class="form-control" placeholder="Özel İstekler" id="message" style="height: 100px"></textarea>
+                                    <label asp-for=SpecialRequest for="message">Özel İstekler</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3" type="submit">Rezervasyon Yap</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

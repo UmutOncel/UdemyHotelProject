@@ -31,6 +31,9 @@ builder.Services.AddScoped<ISubscribeDAL, EfSubscribeDAL>()
 builder.Services.AddScoped<IAboutDAL, EfAboutDAL>()
                 .AddScoped<IAboutService, AboutManager>();
 
+builder.Services.AddScoped<IBookingDAL, EfBookingDAL>()
+                .AddScoped<IBookingService, BookingManager>();
+
 builder.Services.AddAutoMapper(typeof(Program));
 
 //Cors: API'nin baþka kaynaklar tarafýndan consume edilmesini(tüketilmesini) saðlayan metot.
