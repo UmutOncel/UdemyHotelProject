@@ -1,0 +1,35 @@
+﻿@model List<BookingVM.Result>
+
+@{
+    Layout = null;
+    int counter = 0;
+}
+
+<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+<div class="container">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Otel Adı</th>
+                    <th scope="col">Otel Puanı</th>
+                    <th scope="col">Otel Görseli</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    counter++;
+                    <tr>
+                        <td>@counter</td>
+                        <td>@item.name</td>
+                        <td>@item.reviewScore</td>
+                        <td><img src="@item.photoMainUrl" class="img-thumbnail rounded" style="height:100px" alt="@item.name"></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

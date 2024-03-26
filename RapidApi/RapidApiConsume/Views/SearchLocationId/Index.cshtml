@@ -1,0 +1,41 @@
+﻿@model List<BookingSearchLocationVM>
+
+@{
+    Layout = null;
+}
+
+<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+<div class="container">
+    <br />
+    @using (Html.BeginForm("Index", "SearchLocationId", FormMethod.Post))
+    {
+        <label>Şehir Adı Girin:</label>
+        <br />
+        <input type="text" class="form-control" name="cityName"></input>
+        <br />
+        <button type="submit" class="btn btn-primary">Şehir İçin ID Bul</button>
+    }
+
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Lokasyon</th>
+                    <th scope="col">İşlem</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.dest_id</td>
+                        <td>
+                            <a asp-controller="BookingByCity" asp-action="Index" asp-route-dest_id="@item.dest_id" class="btn btn-dark">Yeni Otel Rezervasyon Bilgisi</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
