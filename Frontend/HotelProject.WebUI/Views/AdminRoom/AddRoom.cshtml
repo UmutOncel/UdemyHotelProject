@@ -1,0 +1,73 @@
+﻿@model AddRoomDTO
+
+@{
+    ViewData["Title"] = "AddRoom";
+    Layout = "~/Views/AdminLayout/_AdminLayout.cshtml";
+}
+
+<form asp-controller="AdminRoom" asp-action="AddRoom" method="post" enctype="multipart/form-data">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Yeni Oda Ekle</h4>
+                <div class="basic-form">
+                    <form>
+                        <div class="form-group row">
+                            <label asp-for=RoomNumber class="col-sm-2 col-form-label">Oda Numarası:</label>
+                            <div class="col-sm-10">
+                                <input asp-for=RoomNumber type="number" class="form-control input-rounded" placeholder="Oda Numarası">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for=Title class="col-sm-2 col-form-label">Oda Başlığı:</label>
+                            <div class="col-sm-10">
+                                <input asp-for=Title type="text" class="form-control input-rounded" placeholder="Oda Başlığı">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for=Price class="col-sm-2 col-form-label">Oda Ücreti:</label>
+                            <div class="col-sm-10">
+                                <input asp-for=Price type="number" class="form-control input-rounded" placeholder="Oda Ücreti">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for=BedCount class="col-sm-2 col-form-label">Yatak Sayısı:</label>
+                            <div class="col-sm-10">
+                                <input asp-for=BedCount type="number" class="form-control input-rounded" placeholder="Yatak Sayısı">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for=BathCount class="col-sm-2 col-form-label">Banyo Sayısı:</label>
+                            <div class="col-sm-10">
+                                <input asp-for=BathCount type="number" class="form-control input-rounded" placeholder="Banyo Sayısı">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for=Wifi class="col-sm-2 col-form-label">Wifi:</label>
+                            <div class="col-sm-10">
+                                <input asp-for=Wifi type="text" class="form-control input-rounded" placeholder="Wifi">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for=RoomCoverImage class="col-sm-2 col-form-label">Oda Görseli:</label>
+                            <div class="col-sm-10">
+                                <input asp-for=RoomCoverImage type="text" class="form-control input-rounded" placeholder="Oda Görseli">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for=Description class="col-sm-2 col-form-label">Açıklama:</label>
+                            <div class="col-sm-10">
+                                <textarea asp-for=Description class="form-control rounded h-150px" rows="5" placeholder="Açıklama"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-10">
+                                <button type="submit" class="btn mb-1 btn-rounded btn-outline-info">Kaydet</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

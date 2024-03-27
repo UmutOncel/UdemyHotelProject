@@ -1,0 +1,50 @@
+﻿@model List<ResultRoomDTO>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/_AdminLayout.cshtml";
+    int count = 0;
+}
+
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-body">
+            <div class="card-title" style="display:flex; justify-content:space-between; align-items:center">
+                <h4>Oda Listesi</h4>
+                <a asp-controller="AdminRoom" asp-action="AddRoom" type="submit" class="btn mb-1 btn-rounded btn-outline-primary">Yeni Oda Ekle</a>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Oda Numarası</th>
+                            <th>Oda Başlığı</th>
+                            <th>Oda Ücreti</th>
+                            <th>Güncelle</th>
+                            <th>Sil</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            count++;
+                            <tr>
+                                <td>@count</td>
+                                <td>@item.RoomNumber</td>
+                                <td>@item.Title</td>
+                                <td>@item.Price</td>
+                                <td>
+                                    <a asp-controller="AdminRoom" asp-action="UpdateRoom" asp-route-id="@item.RoomID" type="button" class="btn mb-1 btn-rounded btn-outline-warning">Güncelle</a>
+                                </td>
+                                <td>
+                                    <a asp-controller="AdminRoom" asp-action="DeleteRoom" asp-route-id="@item.RoomID" type="submit" class="btn mb-1 btn-rounded btn-outline-danger">Sil</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
