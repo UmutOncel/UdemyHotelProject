@@ -1,0 +1,69 @@
+﻿@model AddContactDTO
+
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h6 class="section-title text-center text-primary text-uppercase">Bize Ulaşın</h6>
+            <h1 class="mb-5">Tüm Sorularınız İçin <span class="text-primary text-uppercase">Bize Ulaşın</span></h1>
+        </div>
+        <div class="row g-4">
+            <div class="col-12">
+                <div class="row gy-4">
+                    <div class="col-md-4">
+                        <h6 class="section-title text-start text-primary text-uppercase">Rezervasyon</h6>
+                        <p><i class="fa fa-envelope-open text-primary me-2"></i>rezervasyon@hotelier.com</p>
+                    </div>
+                    <div class="col-md-4">
+                        <h6 class="section-title text-start text-primary text-uppercase">Genel Konular</h6>
+                        <p><i class="fa fa-envelope-open text-primary me-2"></i>info@hotelier.com</p>
+                    </div>
+                    <div class="col-md-4">
+                        <h6 class="section-title text-start text-primary text-uppercase">İnsan Kaynakları</h6>
+                        <p><i class="fa fa-envelope-open text-primary me-2"></i>ik@hotelier.com</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 wow fadeIn" data-wow-delay="0.1s">
+                <iframe class="position-relative rounded w-100 h-100"
+                        src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1596.2876039499115!2d30.745931558255297!3d36.852654699234954!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1str!2str!4v1711549995658!5m2!1str!2str"
+                        frameborder="0" style="min-height: 350px; border:0;" allowfullscreen="" aria-hidden="false"
+                        tabindex="0"></iframe>
+            </div>
+            <div class="col-md-6">
+                <div class="wow fadeInUp" data-wow-delay="0.2s">
+                    <form asp-controller="Contact" asp-action="SendMessage" method="post" enctype="multipart/form-data">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input asp-for=Name type="text" class="form-control" id="name" placeholder="Ad Soyad">
+                                    <label asp-for=Name for="name">Ad Soyad</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input asp-for=Mail type="email" class="form-control" id="email" placeholder="Mail Adresi">
+                                    <label asp-for=Mail for="email">Mail Adresi</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input asp-for=Subject type="text" class="form-control" id="subject" placeholder="Konu">
+                                    <label asp-for=Subject for="subject">Konu</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <textarea asp-for=Message class="form-control" placeholder="Leave a message here" id="Mesaj" style="height: 150px"></textarea>
+                                    <label asp-for=Message for="message">Mesaj</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3" type="submit">Mesajı Gönder</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
