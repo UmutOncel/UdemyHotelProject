@@ -40,6 +40,9 @@ builder.Services.AddScoped<IContactDAL, EfContactDAL>()
 builder.Services.AddScoped<IGuestDAL, EfGuestDAL>()
                 .AddScoped<IGuestService, GuestManager>();
 
+builder.Services.AddScoped<ISendMessageDAL, EfSendMessageDAL>()
+                .AddScoped<ISendMessageService, SendMessageManager>();
+
 builder.Services.AddAutoMapper(typeof(Program));
 
 //Cors: API'nin baþka kaynaklar tarafýndan consume edilmesini(tüketilmesini) saðlayan metot.

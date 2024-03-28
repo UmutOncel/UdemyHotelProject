@@ -1,0 +1,59 @@
+﻿@model AddSendMessageDTO
+
+@{
+    ViewData["Title"] = "AddSendMessage";
+    Layout = "~/Views/AdminLayout/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="email-left-box">
+                        <a asp-controller="AdminContact" asp-action="AddSendMessage" class="btn btn-primary btn-block">Yeni Mesaj Oluştur</a>
+                        @await Html.PartialAsync("/Views/AdminContact/AdminContactSidebarPartial.cshtml")
+
+                        <h5 class="mt-5 m-b-10">Kategoriler</h5>
+                        @await Html.PartialAsync("/Views/AdminContact/AdminContactCategorySidebarPartial.cshtml")
+                    </div>
+                    <div class="email-right-box">
+                        <div class="toolbar" role="toolbar">
+                            <div class="btn-group m-b-20">
+                                <button type="button" class="btn btn-light">
+                                    <i class="fa fa-archive"></i>
+                                </button>
+                                <button type="button" class="btn btn-light">
+                                    <i class="fa fa-exclamation-circle"></i>
+                                </button>
+                                <button type="button" class="btn btn-light">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="compose-content mt-5">
+                            <form asp-controller="AdminContact" asp-action="AddSendMessage" method="post" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <input asp-for=ReceiverMail type="email" class="form-control bg-transparent" placeholder="Alıcı Mail Adresi">
+                                </div>
+                                <div class="form-group">
+                                    <input asp-for=ReceiverName type="text" class="form-control bg-transparent" placeholder="Alıcı Adı Soyadı">
+                                </div>
+                                <div class="form-group">
+                                    <input asp-for=Title type="text" class="form-control bg-transparent" placeholder="Konu">
+                                </div>
+                                <div class="form-group">
+                                    <textarea asp-for="Content" class="textarea_editor form-control bg-light" rows="15" placeholder="Mesajınızı Yazınız..."></textarea>
+                                </div>
+                                <div class="text-left m-t-15">
+                                    <button class="btn btn-primary m-b-30 m-t-15 f-s-14 p-l-20 p-r-20 m-r-10" type="submit"><i class="fa fa-paper-plane m-r-5"></i> Gönder</button>
+                                    <a asp-controller="AdminContact" asp-action="Inbox" asp class="btn btn-dark m-b-30 m-t-15 f-s-14 p-l-20 p-r-20" type="button"><i class="ti-close m-r-5 f-s-12"></i> İptal Et</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -36,6 +36,15 @@
                     <i class="icon-people menu-icon"></i><span class="nav-text">Misafirler</span>
                 </a>
             </li>
+            <li>
+                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                    <i class="icon-envelope menu-icon"></i> <span class="nav-text">Email</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a asp-controller="AdminContact" asp-action="Inbox">Gelen Kutusu</a></li>
+                    <li><a asp-controller="AdminContact" asp-action="Sendbox">Giden Kutusu</a></li>
+                </ul>
+            </li>
         </ul>
     </div>
 </div>
