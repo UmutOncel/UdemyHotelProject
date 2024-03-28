@@ -37,6 +37,10 @@ namespace HotelProject.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> AddGuest(AddGuestDTO addGuestDTO)
         {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(addGuestDTO);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
@@ -76,6 +80,10 @@ namespace HotelProject.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateGuest(UpdateGuestDTO updateGuestDTO)
         {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(updateGuestDTO);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
