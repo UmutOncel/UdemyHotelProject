@@ -1,10 +1,12 @@
 ﻿using HotelProject.EntityLayer.Concrete;
 using HotelProject.WebUI.DTOs.LoginDTOs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HotelProject.WebUI.Controllers
 {
+    [AllowAnonymous]    //yetkisiz kullanıcıya erişim izni verir.
     public class LoginController : Controller
     {
         private readonly SignInManager<AppUser> _signInManager;
