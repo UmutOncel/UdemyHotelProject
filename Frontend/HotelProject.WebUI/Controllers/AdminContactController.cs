@@ -1,6 +1,9 @@
 ﻿using HotelProject.WebUI.DTOs.ContactDTOs;
 using HotelProject.WebUI.DTOs.SendMessageDTOs;
+using HotelProject.WebUI.Models.Mail;
+using MailKit.Net.Smtp;
 using Microsoft.AspNetCore.Mvc;
+using MimeKit;
 using Newtonsoft.Json;
 using System.Text;
 
@@ -47,8 +50,30 @@ namespace HotelProject.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> AddSendMessage(AddSendMessageDTO addSendMessageDTO)
         {
-            addSendMessageDTO.SenderMail = "admin@gmail.com";
-            addSendMessageDTO.SenderName = "Admin";
+            addSendMessageDTO.SenderMail = "umutoncel91@gmail.com";
+            addSendMessageDTO.SenderName = "HotelierAdmin";
+
+            MimeMessage mimeMessage = new MimeMessage();
+                                                                   
+            MailboxAddress mailboxAddressFrom = new MailboxAddress(addSendMessageDTO.SenderName, addSendMessageDTO.SenderMail);     //gönderici adı, gönderici mail adresi
+            mimeMessage.From.Add(mailboxAddressFrom);
+                                                            
+            MailboxAddress mailboxAddressTo = new MailboxAddress(addSendMessageDTO.ReceiverName, addSendMessageDTO.ReceiverMail);   //alıcı adı, alıcı mail adresi
+            mimeMessage.To.Add(mailboxAddressTo);
+
+            var bodyBuilder = new BodyBuilder();
+            bodyBuilder.TextBody = addSendMessageDTO.Content;
+            mimeMessage.Body = bodyBuilder.ToMessageBody();
+
+            mimeMessage.Subject = addSendMessageDTO.Title;
+
+            //2 adet "SmtpClient" var. Biz MailKit'e ait olanı kullanacağız.
+            SmtpClient smtpClient = new SmtpClient();
+            smtpClient.Connect("smtp.gmail.com", 587, false);   //gmail'e bağlan, gmail port numarası
+            smtpClient.Authenticate("umutoncel91@gmail.com", "nblugqtzdpznctma");   //şifre alımı notlara yazıldı
+            smtpClient.Send(mimeMessage);
+            smtpClient.Disconnect(true);
+
             addSendMessageDTO.Date = Convert.ToDateTime(DateTime.Now.ToShortDateString());
 
             var client = _httpClientFactory.CreateClient();
