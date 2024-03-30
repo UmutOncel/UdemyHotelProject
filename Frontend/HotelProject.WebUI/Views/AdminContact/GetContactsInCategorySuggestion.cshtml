@@ -1,7 +1,7 @@
-﻿@model List<SendboxSendMessageDTO>
+﻿@model List<InboxContactDTO>
 
 @{
-    ViewData["Title"] = "Sendbox";
+    ViewData["Title"] = "GetContactsInCategorySuggestion";
     Layout = "~/Views/AdminLayout/_AdminLayout.cshtml";
 }
 
@@ -14,17 +14,17 @@
                         <a asp-controller="AdminContact" asp-action="AddSendMessage" class="btn btn-primary btn-block">Yeni Mesaj Oluştur</a>
                         @await Component.InvokeAsync("AdminContactSidebar")
 
-                        @* @await Html.PartialAsync("/Views/AdminContact/AdminContactCategorySidebarPartial.cshtml") *@
+                        @await Html.PartialAsync("/Views/AdminContact/AdminContactCategorySidebarPartial.cshtml")
                     </div>
                     <div class="email-right-box">
                         <div class="email-list m-t-15">
                             @foreach (var item in Model)
                             {
                                 <div class="message">
-                                    <a asp-controller="AdminContact" asp-action="SendboxMessageDetails" asp-route-id="@item.SendMessageID">
+                                    <a asp-controller="AdminContact" asp-action="InboxMessageDetails" asp-route-id="@item.ContactID">
                                         <div class="col-mail col-mail-2">
                                             <div class="subject">
-                                                <b>Alıcı: @item.ReceiverName</b> Konu: @item.Title
+                                                <b>Gönderici: @item.Name</b> Konu: @item.Subject
                                             </div>
                                             <div class="date">@item.Date.ToShortDateString()</div>
                                         </div>

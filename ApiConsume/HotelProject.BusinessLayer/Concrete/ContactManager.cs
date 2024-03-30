@@ -33,6 +33,36 @@ namespace HotelProject.BusinessLayer.Concrete
             return _contactDAL.GetContactCount();
         }
 
+        public List<Contact> TGetContactsInCategoryComplaint()
+        {
+            return _contactDAL.GetContactsInCategoryComplaint();
+        }
+
+        public List<Contact> TGetContactsInCategoryDemand()
+        {
+            return _contactDAL.GetContactsInCategoryDemand();
+        }
+
+        public List<Contact> TGetContactsInCategoryJobApplication()
+        {
+            return _contactDAL.GetContactsInCategoryJobApplication();
+        }
+
+        public List<Contact> TGetContactsInCategoryOther()
+        {
+            return _contactDAL.GetContactsInCategoryOther();
+        }
+
+        public List<Contact> TGetContactsInCategorySuggestion()
+        {
+            return _contactDAL.GetContactsInCategorySuggestion();
+        }
+
+        public List<Contact> TGetContactsInCategoryThank()
+        {
+            return _contactDAL.GetContactsInCategoryThank();
+        }
+
         public List<Contact> TGetList()
         {
             return _contactDAL.GetList();

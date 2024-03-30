@@ -10,5 +10,17 @@ namespace HotelProject.BusinessLayer.Abstract
     public interface IContactService: IGenericService<Contact>
     {
         int TGetContactCount();
+
+        List<Contact> TGetContactsInCategoryThank();
+
+        List<Contact> TGetContactsInCategoryComplaint();
+
+        List<Contact> TGetContactsInCategorySuggestion();
+
+        List<Contact> TGetContactsInCategoryDemand();
+
+        List<Contact> TGetContactsInCategoryJobApplication();
+
+        List<Contact> TGetContactsInCategoryOther();
     }
 }

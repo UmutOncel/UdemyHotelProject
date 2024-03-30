@@ -59,5 +59,47 @@ namespace HotelProject.WebApi.Controllers
             var value = _contactService.TGetContactCount();
             return Ok(value); 
         }
+
+        [HttpGet("GetContactsInCategoryThank")]
+        public IActionResult GetContactsInCategoryThank() 
+        {
+            var values = _contactService.TGetContactsInCategoryThank();
+            return Ok(values);
+        }
+
+        [HttpGet("GetContactsInCategoryComplaint")]
+        public IActionResult GetContactsInCategoryComplaint()
+        {
+            var values = _contactService.TGetContactsInCategoryComplaint();
+            return Ok(values);
+        }
+
+        [HttpGet("GetContactsInCategoryDemand")]
+        public IActionResult GetContactsInCategoryDemand()
+        {
+            var values = _contactService.TGetContactsInCategoryDemand();
+            return Ok(values);
+        }
+
+        [HttpGet("GetContactsInCategoryJobApplication")]
+        public IActionResult GetContactsInCategoryJobApplication()
+        {
+            var values = _contactService.TGetContactsInCategoryJobApplication();
+            return Ok(values);
+        }
+
+        [HttpGet("GetContactsInCategoryOther")]
+        public IActionResult GetContactsInCategoryOther()
+        {
+            var values = _contactService.TGetContactsInCategoryOther();
+            return Ok(values);
+        }
+
+        [HttpGet("GetContactsInCategorySuggestion")]
+        public IActionResult GetContactsInCategorySuggestion()
+        {
+            var values = _contactService.TGetContactsInCategorySuggestion();
+            return Ok(values);
+        }
     }
 }
