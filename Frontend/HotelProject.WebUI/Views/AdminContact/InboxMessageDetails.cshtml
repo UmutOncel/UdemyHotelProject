@@ -12,7 +12,7 @@
                 <div class="card-body">
                     <div class="email-left-box">
                         <a asp-controller="AdminContact" asp-action="AddSendMessage" class="btn btn-primary btn-block">Yeni Mesaj Oluştur</a>
-                        @await Html.PartialAsync("/Views/AdminContact/AdminContactSidebarPartial.cshtml")
+                        @await Component.InvokeAsync("AdminContactSidebar")
 
                         @await Html.PartialAsync("/Views/AdminContact/AdminContactCategorySidebarPartial.cshtml")
                     </div>

@@ -31,11 +31,6 @@ namespace HotelProject.WebUI.Controllers
             return View();
         }
 
-        public PartialViewResult AdminContactSidebarPartial() 
-        {
-            return PartialView();
-        }
-
         public PartialViewResult AdminContactCategorySidebarPartial() 
         {
             return PartialView();

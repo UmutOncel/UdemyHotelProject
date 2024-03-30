@@ -51,5 +51,13 @@ namespace HotelProject.WebApi.Controllers
             _contactService.TUpdate(contact);
             return Ok();
         }
+
+        //Parametresiz 2 Get metodu var. Karışmaması için bu şekilde metot adını HttpGet yanına yazıyoruz.
+        [HttpGet("GetContactCount")]        
+        public IActionResult GetContactCount() 
+        {
+            var value = _contactService.TGetContactCount();
+            return Ok(value); 
+        }
     }
 }
