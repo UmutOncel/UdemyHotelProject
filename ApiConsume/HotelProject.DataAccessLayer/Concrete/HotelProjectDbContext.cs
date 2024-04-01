@@ -53,5 +53,6 @@ namespace HotelProject.DataAccessLayer.Concrete
 
         //MessageCategories tablosu Contacts tablosu ile ilişkili olduğu ve Contacts tablosunda da veri olduğu için "update-database" işleminde hata verecektir. O yüzden migration yapılmadan önce Contacts tablosu içindeki veriler silinmeli.
         public DbSet<MessageCategory> MessageCategories { get; set; }
+        public DbSet<WorkLocation> WorkLocations { get; set; }
     }
 }

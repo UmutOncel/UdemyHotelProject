@@ -1,0 +1,44 @@
+﻿@model List<ResultWorkLocationDTO>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/_AdminLayout.cshtml";
+}
+
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-body">
+            <div class="card-title" style="display:flex; justify-content:space-between; align-items:center">
+                <h4>Otel Lokasyonları Listesi</h4>
+                <a asp-controller="WorkLocation" asp-action="AddWorkLocation" type="submit" class="btn mb-1 btn-rounded btn-outline-primary">Yeni Lokasyon Ekle</a>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Lokasyon Adı</th>
+                            <th>Şehir</th>
+                            <th>Güncelle</th>
+                            <th>Sil</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Name</td>
+                                <td>@item.City</td>
+                                <td>
+                                    <a asp-controller="WorkLocation" asp-action="UpdateWorkLocation" asp-route-id="@item.WorkLocationID" type="button" class="btn mb-1 btn-rounded btn-outline-warning">Güncelle</a>
+                                </td>
+                                <td>
+                                    <a asp-controller="WorkLocation" asp-action="DeleteWorkLocation" asp-route-id="@item.WorkLocationID" type="submit" class="btn mb-1 btn-rounded btn-outline-danger">Sil</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -2,18 +2,28 @@
     <div class="nk-nav-scroll">
         <ul class="metismenu" id="menu">
             <li>
+                <a asp-controller="Default" asp-action="Index" aria-expanded="false">
+                    <i class="icon-plane menu-icon"></i><span class="nav-text">Siteye Git</span>
+                </a>
+            </li>
+            <li>
+                <a asp-controller="" asp-action="" aria-expanded="false">
+                    <i class="icon-speedometer menu-icon"></i><span class="nav-text">Dashboard</span>
+                </a>
+            </li>
+            <li>
                 <a asp-controller="Staff" asp-action="Index" aria-expanded="false">
-                    <i class="icon-notebook menu-icon"></i><span class="nav-text">Personeller</span>
+                    <i class="icon-eye menu-icon"></i><span class="nav-text">Personeller</span>
                 </a>
             </li>
             <li>
                 <a asp-controller="Testimonial" asp-action="Index" aria-expanded="false">
-                    <i class="icon-lock menu-icon"></i><span class="nav-text">Referanslar</span>
+                    <i class="icon-book-open menu-icon"></i><span class="nav-text">Referanslar</span>
                 </a>
             </li>
             <li>
                 <a asp-controller="Service" asp-action="Index" aria-expanded="false">
-                    <i class="icon-grid menu-icon"></i><span class="nav-text">Hizmetler</span>
+                    <i class="icon-puzzle menu-icon"></i><span class="nav-text">Hizmetler</span>
                 </a>
             </li>
             <li>
@@ -45,6 +55,31 @@
                     <li><a asp-controller="AdminContact" asp-action="Inbox"><i class="fa fa-inbox font-18 align-middle mr-2"></i> Gelen Kutusu</a></li>
                     <li><a asp-controller="AdminContact" asp-action="Sendbox"><i class="fa fa-paper-plane font-18 align-middle mr-2"></i> Giden Kutusu</a></li>
                 </ul>
+            </li>
+            <li>
+                <a asp-controller="AdminUser" asp-action="AppUserList" aria-expanded="false">
+                    <i class="icon-user menu-icon"></i><span class="nav-text">Kullanıcılar</span>
+                </a>
+            </li>
+            <li>
+                <a asp-controller="WorkLocation" asp-action="Index" aria-expanded="false">
+                    <i class="icon-globe-alt menu-icon"></i><span class="nav-text">Otel Lokasyonları</span>
+                </a>
+            </li>
+            <li>
+                <a asp-controller="" asp-action="" aria-expanded="false">
+                    <i class="icon-game-controller menu-icon"></i><span class="nav-text">Roller</span>
+                </a>
+            </li>
+            <li>
+                <a asp-controller="" asp-action="" aria-expanded="false">
+                    <i class="icon-settings menu-icon"></i><span class="nav-text">Ayarlar</span>
+                </a>
+            </li>
+            <li>
+                <a asp-controller="" asp-action="" aria-expanded="false">
+                    <i class="icon-logout menu-icon"></i><span class="nav-text">Çıkış Yap</span>
+                </a>
             </li>
         </ul>
     </div>

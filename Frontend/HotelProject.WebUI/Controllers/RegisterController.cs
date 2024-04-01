@@ -1,8 +1,11 @@
 ﻿using HotelProject.EntityLayer.Concrete;
 using HotelProject.WebUI.DTOs.RegisterDTOs;
+using HotelProject.WebUI.DTOs.WorkLocationDTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Newtonsoft.Json;
 
 namespace HotelProject.WebUI.Controllers
 {
@@ -10,15 +13,33 @@ namespace HotelProject.WebUI.Controllers
     public class RegisterController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
+        private readonly IHttpClientFactory _httpClientFactory;
 
-        public RegisterController(UserManager<AppUser> userManager)
+        public RegisterController(UserManager<AppUser> userManager, IHttpClientFactory httpClientFactory)
         {
             _userManager = userManager;
+            _httpClientFactory = httpClientFactory;
+
         }
 
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            var client = _httpClientFactory.CreateClient();
+            var responseMessage = await client.GetAsync("http://localhost:31289/api/WorkLocation");
+            if (responseMessage.IsSuccessStatusCode) 
+            { 
+                var jsonData = await responseMessage.Content.ReadAsStringAsync();
+                var values = JsonConvert.DeserializeObject<List<ResultWorkLocationDTO>>(jsonData);
+                List<SelectListItem> workLocationList = (from x in values
+                                                         select new SelectListItem
+                                                         {
+                                                             Text = x.Name,
+                                                             Value = x.WorkLocationID.ToString()
+                                                         }).ToList();
+                ViewBag.WorkLocationList = workLocationList;
+                return View();
+            }
             return View();
         }
 
@@ -35,7 +56,9 @@ namespace HotelProject.WebUI.Controllers
                 Name = addNewUserDTO.Name,
                 Surname = addNewUserDTO.Surname,
                 UserName = addNewUserDTO.Username,
-                Email = addNewUserDTO.Mail
+                Email = addNewUserDTO.Mail,
+                City = addNewUserDTO.City,
+                WorkLocationId = addNewUserDTO.WorkLocationId
             };
             //Şifre eşleştirmesi yukarıda yazılmıyor. "UserManager"ın kendi metodu olan "CreateAsync" kullanılıyor.
             var result = await _userManager.CreateAsync(appUser, addNewUserDTO.Password);

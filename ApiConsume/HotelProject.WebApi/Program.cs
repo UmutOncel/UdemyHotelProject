@@ -46,6 +46,12 @@ builder.Services.AddScoped<ISendMessageDAL, EfSendMessageDAL>()
 builder.Services.AddScoped<IMessageCategoryDAL, EfMessageCategoryDAL>()
                 .AddScoped<IMessageCategoryService, MessageCategoryManager>();
 
+builder.Services.AddScoped<IWorkLocationDAL, EfWorkLocationDAL>()
+                .AddScoped<IWorkLocationService, WorkLocationManager>();
+
+builder.Services.AddScoped<IAppUserDAL, EfAppUserDAL>()
+                .AddScoped<IAppUserService, AppUserManager>();
+
 builder.Services.AddAutoMapper(typeof(Program));
 
 //Cors: API'nin baþka kaynaklar tarafýndan consume edilmesini(tüketilmesini) saðlayan metot.
@@ -57,8 +63,13 @@ builder.Services.AddCors(opt =>
     });
 });
 
+//"builder.Services.AddControllers();" zaten vardý sonuna "AddNewtonsoftJson" ekledik. (Include metodu çalýþmasý için ekledik.)
+builder.Services.AddControllers().AddNewtonsoftJson
+    (
+        opt => opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+    );
 
-builder.Services.AddControllers();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
