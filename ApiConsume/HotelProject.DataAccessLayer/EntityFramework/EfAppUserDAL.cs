@@ -1,6 +1,7 @@
 ﻿using HotelProject.DataAccessLayer.Abstract;
 using HotelProject.DataAccessLayer.Concrete;
 using HotelProject.DataAccessLayer.Repository;
+using HotelProject.DtoLayer.DTOs.AppUserDTOs;
 using HotelProject.EntityLayer.Concrete;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -17,12 +18,24 @@ namespace HotelProject.DataAccessLayer.EntityFramework
         {
         }
 
-        public List<AppUser> GetUserListWithWorkLocation()
+        //AppUser ve WorkLocation arasında bire çok ilişki vardı. AppUser içinden WorkLocation'ın Name'ine ulaşmak için AppUser içindeki WorkLocation prop'unun dolu gelmesi gerekiyor. Bunun için "Include" metodunu kullandık. Yalnız tek başına onu kullanmak yeterli olmuyor. WorkLocationName'e yine ulaşamıyoruz. Burada iç içe geçmiş (Nested) bir yapı olduğu için bir DTO yarattık. Onun prop'ları içine "Select" yapısı ile verileri yolladık. 
+        public List<AppUserDTO> GetUserListWithWorkLocation()
         {
             HotelProjectDbContext context = new HotelProjectDbContext();
 
             //Users içine WorkLocation'ı dahil et.
-            return context.Users.Include(x => x.WorkLocation).ToList();
+            var values = context.Users.Include(x => x.WorkLocation)
+                                      .Select(y => new AppUserDTO {
+                                          Name = y.Name,
+                                          Surname = y.Surname,
+                                          City = y.City,
+                                          ImageUrl = y.ImageUrl,
+                                          Country = y.Country,
+                                          Gender = y.Gender,
+                                          WorkLocationId = y.WorkLocationId,
+                                          WorkLocationName = y.WorkLocation.Name
+                                      }).ToList();
+            return values;
         }
     }
 }

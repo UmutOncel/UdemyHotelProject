@@ -20,23 +20,40 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Profil Resmi</th>
-                                    <th>Ad Soyad</th>
+                                    <th>Kullanıcı</th>
                                     <th>Şehir</th>
+                                    <th>Ülke</th>
+                                    <th>Cinsiyet</th>
+                                    <th>Şube</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach(var item in Model)
+                                @foreach (var item in Model)
                                 {
                                     counter++;
                                     <tr>
                                         <td>@counter</td>
                                         <td>
-                                            <img src="@item.ImageUrl" class=" rounded-circle mr-3" alt="@item.Name @item.Surname">
+                                            <img src="@item.ImageUrl" class=" rounded-circle mr-3" alt="@item.Name @item.Surname"> @item.Name @item.Surname
                                         </td>
-                                        <td>@item.Name @item.Surname</td>
                                         <td>
                                             <span>@item.City</span>
+                                        </td>
+                                        <td>
+                                            <span>@item.Country</span>
+                                        </td>
+                                        <td>
+                                            @if (item.Gender == "Erkek")
+                                            {
+                                                <i class="fa fa-circle-o text-danger  mr-2"></i> @item.Gender
+                                            }
+                                            @if (item.Gender == "Kadın")
+                                            {
+                                                <i class="fa fa-circle-o text-warning  mr-2"></i> @item.Gender
+                                            }
+                                        </td>
+                                        <td>
+                                            <span>@item.WorkLocationName</span>
                                         </td>
                                     </tr>
                                 }

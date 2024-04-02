@@ -1,4 +1,5 @@
-﻿using HotelProject.EntityLayer.Concrete;
+﻿using HotelProject.DtoLayer.DTOs.AppUserDTOs;
+using HotelProject.EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace HotelProject.DataAccessLayer.Abstract
 {
     public interface IAppUserDAL: IGenericDAL<AppUser>
     {
-        List<AppUser> GetUserListWithWorkLocation();
+        List<AppUserDTO> GetUserListWithWorkLocation();
     }
 }
