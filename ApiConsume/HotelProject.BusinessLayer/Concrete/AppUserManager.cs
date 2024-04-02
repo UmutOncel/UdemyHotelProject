@@ -1,5 +1,6 @@
 ﻿using HotelProject.BusinessLayer.Abstract;
 using HotelProject.DataAccessLayer.Abstract;
+using HotelProject.DtoLayer.DTOs.AppUserDTOs;
 using HotelProject.EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
@@ -33,7 +34,7 @@ namespace HotelProject.BusinessLayer.Concrete
             return _appUserDAL.GetList();
         }
 
-        public List<AppUser> TGetUserListWithWorkLocation()
+        public List<AppUserDTO> TGetUserListWithWorkLocation()
         {
             return _appUserDAL.GetUserListWithWorkLocation();
         }
