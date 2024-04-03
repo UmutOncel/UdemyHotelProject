@@ -11,5 +11,6 @@ namespace HotelProject.BusinessLayer.Abstract
     public interface IAppUserService: IGenericService<AppUser>
     {
         List<AppUserDTO> TGetUserListWithWorkLocation();
+        int TGetAppUserCount();
     }
 }

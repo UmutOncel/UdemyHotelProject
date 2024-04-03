@@ -11,5 +11,6 @@ namespace HotelProject.DataAccessLayer.Abstract
     public interface IAppUserDAL: IGenericDAL<AppUser>
     {
         List<AppUserDTO> GetUserListWithWorkLocation();
+        int GetAppUserCount();
     }
 }

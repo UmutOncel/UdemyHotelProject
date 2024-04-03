@@ -22,7 +22,12 @@ namespace HotelProject.BusinessLayer.Concrete
         public void TDelete(AppUser t)
         {
             _appUserDAL.Delete(t);
-        }   
+        }
+
+        public int TGetAppUserCount()
+        {
+            return _appUserDAL.GetAppUserCount();
+        }
 
         public AppUser TGetByID(int id)
         {
