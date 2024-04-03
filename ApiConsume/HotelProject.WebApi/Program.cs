@@ -3,6 +3,7 @@ using HotelProject.BusinessLayer.Concrete;
 using HotelProject.DataAccessLayer.Abstract;
 using HotelProject.DataAccessLayer.Concrete;
 using HotelProject.DataAccessLayer.EntityFramework;
+using HotelProject.EntityLayer.Concrete;
 using HotelProject.WebApi.Mapping;
 using System.Reflection;
 
@@ -12,6 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.AddDbContext<HotelProjectDbContext>();
+builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<HotelProjectDbContext>();
 
 builder.Services.AddScoped<IRoomDAL, EfRoomDAL>()
                 .AddScoped<IRoomService, RoomManager>();
@@ -51,6 +53,9 @@ builder.Services.AddScoped<IWorkLocationDAL, EfWorkLocationDAL>()
 
 builder.Services.AddScoped<IAppUserDAL, EfAppUserDAL>()
                 .AddScoped<IAppUserService, AppUserManager>();
+
+builder.Services.AddScoped<IAppRoleDAL, EfAppRoleDAL>()
+                .AddScoped<IAppRoleService, AppRoleManager>();
 
 builder.Services.AddAutoMapper(typeof(Program));
 
