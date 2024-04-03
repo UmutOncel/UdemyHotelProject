@@ -18,6 +18,12 @@ namespace HotelProject.DataAccessLayer.EntityFramework
         {
         }
 
+        public int GetAppUserCount()
+        {
+            HotelProjectDbContext context = new HotelProjectDbContext();
+            return context.Users.Count();
+        }
+
         //AppUser ve WorkLocation arasında bire çok ilişki vardı. AppUser içinden WorkLocation'ın Name'ine ulaşmak için AppUser içindeki WorkLocation prop'unun dolu gelmesi gerekiyor. Bunun için "Include" metodunu kullandık. Yalnız tek başına onu kullanmak yeterli olmuyor. WorkLocationName'e yine ulaşamıyoruz. Burada iç içe geçmiş (Nested) bir yapı olduğu için bir DTO yarattık. Onun prop'ları içine "Select" yapısı ile verileri yolladık. 
         public List<AppUserDTO> GetUserListWithWorkLocation()
         {
