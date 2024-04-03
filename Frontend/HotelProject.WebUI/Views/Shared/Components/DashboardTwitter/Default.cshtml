@@ -1,0 +1,23 @@
+﻿@model TwitterDTO
+
+<div class="col-lg-4 col-sm-6">
+    <div class="card">
+        <div class="social-graph-wrapper widget-twitter">
+            <span class="s-icon"><i class="fa fa-twitter"></i></span>
+        </div>
+        <div class="row">
+            <div class="col-6 border-right">
+                <div class="pt-3 pb-3 pl-0 pr-0 text-center">
+                    <h4 class="m-1">@Model.following_count</h4>
+                    <p class="m-0">Takip Ettiklerim</p>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="pt-3 pb-3 pl-0 pr-0 text-center">
+                    <h4 class="m-1">@Model.follower_count</h4>
+                    <p class="m-0">Takipçilerim</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

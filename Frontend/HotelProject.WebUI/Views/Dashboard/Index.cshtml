@@ -12,7 +12,13 @@
 
     @await Component.InvokeAsync("DashboardLast6Booking")
 
-    @await Component.InvokeAsync("DashboardSubscribe")
+    <div class="row">
+        @await Component.InvokeAsync("DashboardInstagram")
+
+        @await Component.InvokeAsync("DashboardTwitter")
+
+        @await Component.InvokeAsync("DashboardLinkedin")
+    </div>
 </div>
 
 @await Component.InvokeAsync("DashboardScript")
