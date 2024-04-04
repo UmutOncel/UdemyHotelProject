@@ -1,4 +1,5 @@
 ﻿using HotelProject.BusinessLayer.Abstract;
+using HotelProject.DtoLayer.DTOs.AppRoleDTOs;
 using HotelProject.EntityLayer.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -70,6 +71,20 @@ namespace HotelProject.WebApi.Controllers
         public async Task<IActionResult> UpdateAppRoleAsync(AppRole appRole)
         {
             await _appRoleService.TUpdateAppRoleAsync(appRole);
+            return Ok();
+        }
+
+        [HttpGet("GetAssignRoleAsync/{id}")]
+        public async Task<IActionResult> GetAssignRoleAsync(int id) 
+        { 
+            var values = await _appRoleService.TGetAssignRoleAsync(id);
+            return Ok(values);
+        }
+
+        [HttpPost("PostAssignRoleAsync")]
+        public async Task<IActionResult> PostAssignRoleAsync(List<RoleAssignDTO> roleList)
+        {
+            await _appRoleService.TPostAssignRoleAsync(roleList);
             return Ok();
         }
     }

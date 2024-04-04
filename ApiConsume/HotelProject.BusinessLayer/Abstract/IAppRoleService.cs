@@ -1,4 +1,5 @@
-﻿using HotelProject.EntityLayer.Concrete;
+﻿using HotelProject.DtoLayer.DTOs.AppRoleDTOs;
+using HotelProject.EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +13,7 @@ namespace HotelProject.BusinessLayer.Abstract
         Task TCreateAppRoleAsync(AppRole appRole);
         Task TDeleteAppRoleAsync(int id);
         Task TUpdateAppRoleAsync(AppRole appRole);
+        Task<List<RoleAssignDTO>> TGetAssignRoleAsync(int id);
+        Task TPostAssignRoleAsync(List<RoleAssignDTO> roleList);
     }
 }
