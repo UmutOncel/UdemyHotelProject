@@ -3,6 +3,7 @@ using HotelProject.DataAccessLayer.Concrete;
 using HotelProject.DataAccessLayer.Repository;
 using HotelProject.DtoLayer.DTOs.AppUserDTOs;
 using HotelProject.EntityLayer.Concrete;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -32,6 +33,7 @@ namespace HotelProject.DataAccessLayer.EntityFramework
             //Users içine WorkLocation'ı dahil et.
             var values = context.Users.Include(x => x.WorkLocation)
                                       .Select(y => new AppUserDTO {
+                                          Id = y.Id,
                                           Name = y.Name,
                                           Surname = y.Surname,
                                           City = y.City,

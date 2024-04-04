@@ -1,5 +1,6 @@
 ﻿using HotelProject.BusinessLayer.Abstract;
 using HotelProject.DataAccessLayer.Abstract;
+using HotelProject.DtoLayer.DTOs.AppRoleDTOs;
 using HotelProject.EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
@@ -56,6 +57,16 @@ namespace HotelProject.BusinessLayer.Concrete
         public async Task TUpdateAppRoleAsync(AppRole appRole)
         {
             await _appRoleDAL.UpdateAppRoleAsync(appRole);
+        }
+
+        public Task<List<RoleAssignDTO>> TGetAssignRoleAsync(int id)
+        {
+            return _appRoleDAL.GetAssignRoleAsync(id);
+        }
+
+        public async Task TPostAssignRoleAsync(List<RoleAssignDTO> roleList)
+        {
+            await _appRoleDAL.PostAssignRoleAsync(roleList);
         }
     }
 }

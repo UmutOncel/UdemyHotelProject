@@ -50,7 +50,7 @@ namespace HotelProject.WebUI.Controllers
             {
                 return View();
             }
-
+            
             var appUser = new AppUser() 
             { 
                 Name = addNewUserDTO.Name,
