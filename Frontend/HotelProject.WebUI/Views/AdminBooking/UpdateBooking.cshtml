@@ -1,0 +1,81 @@
+﻿@model UpdateBookingDTO
+
+@{
+    ViewData["Title"] = "UpdateBooking";
+    Layout = "~/Views/AdminLayout/_AdminLayout.cshtml";
+}
+
+<form asp-controller="AdminBooking" asp-action="UpdateBooking" method="post" enctype="multipart/form-data">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Rezervasyonu Güncelle</h4>
+                <div class="basic-form">
+                    <form>
+                        <input type="hidden" asp-for="BookingID">
+                        <input type="hidden" asp-for="Status">
+                        <div class="form-group row">
+                            <label asp-for=Name class="col-sm-2 col-form-label">Ad Soyad:</label>
+                            <div class="col-sm-10">
+                                <input asp-for=Name type="text" class="form-control input-rounded" placeholder="Ad Soyad">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for=Mail class="col-sm-2 col-form-label">Email Adresi:</label>
+                            <div class="col-sm-10">
+                                <input asp-for=Mail type="email" class="form-control input-rounded" placeholder="Email Adresi">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for=CheckIn class="col-sm-2 col-form-label">Giriş Tarihi:</label>
+                            <div class="col-sm-10">
+                                <input asp-for=CheckIn type="datetime-local" class="form-control input-rounded" placeholder="Giriş Tarihi">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for=CheckOut class="col-sm-2 col-form-label">Çıkış Tarihi:</label>
+                            <div class="col-sm-10">
+                                <input asp-for=CheckOut type="datetime-local" class="form-control input-rounded" placeholder="Çıkış Tarihi">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for=AdultCount class="col-sm-2 col-form-label">Yetişkin Sayısı:</label>
+                            <div class="col-sm-10">
+                                <input asp-for=AdultCount type="number" class="form-control input-rounded" placeholder="Yetişkin Sayısı">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for=ChildCount class="col-sm-2 col-form-label">Çocuk Sayısı:</label>
+                            <div class="col-sm-10">
+                                <input asp-for=ChildCount type="number" class="form-control input-rounded" placeholder="Çocuk Sayısı">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for=RoomCount class="col-sm-2 col-form-label">Oda Sayısı:</label>
+                            <div class="col-sm-10">
+                                <input asp-for=RoomCount type="number" class="form-control input-rounded" placeholder="Oda Sayısı">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for=SpecialRequest class="col-sm-2 col-form-label">Özel İstekler:</label>
+                            <div class="col-sm-10">
+                                <textarea asp-for=SpecialRequest class="textarea_editor form-control bg-light" rows="7" placeholder="Özel İstekler"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for=Description class="col-sm-2 col-form-label">Açıklama:</label>
+                            <div class="col-sm-10">
+                                <textarea asp-for=Description class="textarea_editor form-control bg-light" rows="7" placeholder="Açıklama"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-10">
+                                <button type="submit" class="btn mb-1 btn-rounded btn-outline-info">Güncelle</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
