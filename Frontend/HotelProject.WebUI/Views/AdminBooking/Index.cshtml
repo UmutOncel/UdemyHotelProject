@@ -24,6 +24,7 @@
                             <th>Onayla</th>
                             <th>Beklet</th>
                             <th>İptal Et</th>
+                            <th>Güncelle</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -57,6 +58,9 @@
                                 </td>
                                 <td>
                                     <a asp-controller="AdminBooking" asp-action="ChangeBookingStatusToRejected" asp-route-id="@item.BookingID" type="button" class="btn mb-1 btn-rounded btn-outline-danger">İptal Et</a>
+                                </td>
+                                <td>
+                                    <a asp-controller="AdminBooking" asp-action="UpdateBooking" asp-route-id="@item.BookingID" type="button" class="btn mb-1 btn-rounded btn-outline-warning">Güncelle</a>
                                 </td>
                             </tr>
                         }
