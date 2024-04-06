@@ -9,5 +9,6 @@ namespace HotelProject.DataAccessLayer.Abstract
 {
     public interface IServiceDAL: IGenericDAL<Service>
     {
+        List<Service> Get6Services();
     }
 }

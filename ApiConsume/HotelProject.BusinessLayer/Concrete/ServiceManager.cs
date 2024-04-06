@@ -23,6 +23,11 @@ namespace HotelProject.BusinessLayer.Concrete
             _serviceDAL.Delete(t);
         }
 
+        public List<Service> TGet6Services()
+        {
+            return _serviceDAL.Get6Services();
+        }
+
         public Service TGetByID(int id)
         {
             return _serviceDAL.GetByID(id);

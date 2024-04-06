@@ -9,5 +9,6 @@ namespace HotelProject.BusinessLayer.Abstract
 {
     public interface IServiceService: IGenericService<Service>
     {
+        List<Service> TGet6Services();
     }
 }

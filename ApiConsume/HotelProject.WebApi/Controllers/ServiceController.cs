@@ -51,5 +51,12 @@ namespace HotelProject.WebApi.Controllers
             var value = _serviceService.TGetByID(id);
             return Ok(value);
         }
+
+        [HttpGet("Get6Services")]
+        public IActionResult Get6Services() 
+        {
+            var values = _serviceService.TGet6Services();
+            return Ok(values);
+        }
     }
 }

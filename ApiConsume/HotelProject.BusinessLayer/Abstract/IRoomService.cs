@@ -10,5 +10,6 @@ namespace HotelProject.BusinessLayer.Abstract
     public interface IRoomService: IGenericService<Room>
     {
         int TGetRoomCount();
+        List<Room> TGet3Rooms();
     }
 }

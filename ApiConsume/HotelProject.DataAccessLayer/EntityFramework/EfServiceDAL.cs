@@ -16,5 +16,12 @@ namespace HotelProject.DataAccessLayer.EntityFramework
         {
             
         }
+
+        public List<Service> Get6Services()
+        {
+            HotelProjectDbContext context = new HotelProjectDbContext();
+            var values = context.Services.OrderBy(x => x.ServiceID).Take(6).ToList();
+            return values;
+        }
     }
 }

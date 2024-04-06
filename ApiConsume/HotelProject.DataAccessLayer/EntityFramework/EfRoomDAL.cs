@@ -17,6 +17,13 @@ namespace HotelProject.DataAccessLayer.EntityFramework
 
         }
 
+        public List<Room> Get3Rooms()
+        {
+            HotelProjectDbContext context = new HotelProjectDbContext();
+            var values = context.Rooms.OrderBy(x => x.RoomID).Take(3).ToList();
+            return values;
+        }
+
         public int GetRoomCount()
         {
             HotelProjectDbContext context = new HotelProjectDbContext();

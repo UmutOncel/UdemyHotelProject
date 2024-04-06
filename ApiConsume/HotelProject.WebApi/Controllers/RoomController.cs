@@ -66,5 +66,12 @@ namespace HotelProject.WebApi.Controllers
             var value = _roomService.TGetByID(id);
             return Ok(value);
         }
+
+        [HttpGet("Get3Rooms")]
+        public IActionResult Get3Rooms() 
+        {
+            var values = _roomService.TGet3Rooms();
+            return Ok(values);
+        }
     }
 }
