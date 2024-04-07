@@ -3,12 +3,15 @@ using FluentValidation.AspNetCore;
 using HotelProject.DataAccessLayer.Concrete;
 using HotelProject.EntityLayer.Concrete;
 using HotelProject.WebUI.DTOs.GuestDTOs;
+using HotelProject.WebUI.Helpers.Images;
 using HotelProject.WebUI.ValidationRules.GuestValidationRules;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+builder.Services.AddScoped<IImageHelper, ImageHelper>();    //ImageHelper'ýn çalýþmasý için.
 
 builder.Services.AddHttpClient();       //Controller'da tanýmlanan "IHttpClientFactory" aktif olmasý için.
 
@@ -58,6 +61,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Staff}/{action=Index}/{id?}");
+    pattern: "{controller=Default}/{action=Index}/{id?}");
 
 app.Run();

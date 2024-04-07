@@ -58,7 +58,8 @@ namespace HotelProject.WebUI.Controllers
                 UserName = addNewUserDTO.Username,
                 Email = addNewUserDTO.Mail,
                 City = addNewUserDTO.City,
-                WorkLocationId = addNewUserDTO.WorkLocationId
+                WorkLocationId = addNewUserDTO.WorkLocationId,
+                ImageUrl = addNewUserDTO.ImageUrl
             };
             //Şifre eşleştirmesi yukarıda yazılmıyor. "UserManager"ın kendi metodu olan "CreateAsync" kullanılıyor.
             var result = await _userManager.CreateAsync(appUser, addNewUserDTO.Password);
