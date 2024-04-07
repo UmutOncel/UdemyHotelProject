@@ -5,6 +5,7 @@
         public int RoomID { get; set; }
         public string RoomNumber { get; set; }
         public string RoomCoverImage { get; set; }
+        public IFormFile Image { get; set; }
         public int Price { get; set; }
         public string Title { get; set; }
         public string BedCount { get; set; }

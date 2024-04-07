@@ -27,5 +27,7 @@ namespace HotelProject.WebUI.DTOs.RegisterDTOs
         public string City { get; set; }
 
         public int WorkLocationId { get; set; }
+
+        public string ImageUrl { get; set; } = "/adminweb/images/avatar/Profil Pic.jpg";
     }
 }

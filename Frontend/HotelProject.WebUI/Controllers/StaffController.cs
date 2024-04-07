@@ -1,4 +1,5 @@
-﻿using HotelProject.WebUI.Models.Staff;
+﻿using HotelProject.WebUI.Helpers.Images;
+using HotelProject.WebUI.Models.Staff;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text;
@@ -8,10 +9,12 @@ namespace HotelProject.WebUI.Controllers
     public class StaffController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
+        private readonly IImageHelper _imageHelper;
 
-        public StaffController(IHttpClientFactory httpClientFactory)
+        public StaffController(IHttpClientFactory httpClientFactory, IImageHelper imageHelper)
         {
             _httpClientFactory = httpClientFactory;
+            _imageHelper = imageHelper;
         }
 
         public async Task<IActionResult> Index()
@@ -36,6 +39,8 @@ namespace HotelProject.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> AddStaff(AddStaffVM addStaffVM) 
         {
+            addStaffVM.Image = await _imageHelper.UploadImage(addStaffVM.Name, addStaffVM.Photo, "staff");
+
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(addStaffVM);     //addStaffVM'i json nesnesine dönüştürdük.
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
@@ -44,6 +49,8 @@ namespace HotelProject.WebUI.Controllers
             {
                 return RedirectToAction("Index");
             }
+
+            _imageHelper.Delete(addStaffVM.Image);
             return View();
         }
 
@@ -76,6 +83,20 @@ namespace HotelProject.WebUI.Controllers
         public async Task<IActionResult> UpdateStaff(UpdateStaffVM updateStaffVM) 
         {
             var client = _httpClientFactory.CreateClient();
+            var responseMessagePhoto = await client.GetAsync($"http://localhost:31289/api/Staff/{updateStaffVM.StaffID}");
+            var jsonDataPhoto = await responseMessagePhoto.Content.ReadAsStringAsync();
+            var value = JsonConvert.DeserializeObject<UpdateStaffVM>(jsonDataPhoto);
+
+            if (updateStaffVM.Photo == null)
+            {
+                updateStaffVM.Image = value.Image;
+            }
+            else
+            {
+                _imageHelper.Delete(value.Image);
+                updateStaffVM.Image = await _imageHelper.UploadImage(updateStaffVM.Name, updateStaffVM.Photo, "staff");
+            }
+
             var jsonData = JsonConvert.SerializeObject(updateStaffVM);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
             var responseMessage = await client.PutAsync("http://localhost:31289/api/Staff", stringContent);

@@ -21,5 +21,8 @@ namespace HotelProject.WebUI.DTOs.SettingDTOs
         [Required(ErrorMessage = "Şifre tekrarı alanı boş bırakılamaz!")]
         [Compare("Password", ErrorMessage = "Şifreleriniz uyuşmuyor! Lütfen kontrol ediniz.")]
         public string ConfirmPassword { get; set; }
+
+        public string ImageUrl { get; set; }
+        public IFormFile Photo { get; set; }
     }
 }
