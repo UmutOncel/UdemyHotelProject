@@ -15,11 +15,13 @@ namespace HotelProject.WebUI.DTOs.SettingDTOs
 
         public string Username { get; set; }
 
-        [Required(ErrorMessage = "Şifre alanı boş bırakılamaz!")]
-        public string Password { get; set; }
+        [Required(ErrorMessage = "Mevcut şifre alanı boş bırakılamaz!")]
+        public string CurrentPassword { get; set; }
 
-        [Required(ErrorMessage = "Şifre tekrarı alanı boş bırakılamaz!")]
-        [Compare("Password", ErrorMessage = "Şifreleriniz uyuşmuyor! Lütfen kontrol ediniz.")]
+        
+        public string NewPassword { get; set; }
+
+        [Compare("NewPassword", ErrorMessage = "Şifreleriniz uyuşmuyor! Lütfen kontrol ediniz.")]
         public string ConfirmPassword { get; set; }
 
         public string ImageUrl { get; set; }

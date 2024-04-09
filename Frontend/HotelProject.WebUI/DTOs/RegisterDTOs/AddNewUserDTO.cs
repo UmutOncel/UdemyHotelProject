@@ -26,6 +26,12 @@ namespace HotelProject.WebUI.DTOs.RegisterDTOs
         [Required(ErrorMessage = "Şehir alanı boş bırakılamaz!")]
         public string City { get; set; }
 
+        [Required(ErrorMessage = "Ülke alanı boş bırakılamaz!")]
+        public string Country { get; set; }
+
+        [Required(ErrorMessage = "Cinsiyet alanı boş bırakılamaz!")]
+        public string Gender { get; set; }
+
         public int WorkLocationId { get; set; }
 
         public string ImageUrl { get; set; } = "/adminweb/images/avatar/Profil Pic.jpg";
