@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using HotelProject.EntityLayer.Concrete;
+using HotelProject.WebUI.DTOs.AppUserDTOs;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 
 namespace HotelProject.WebUI.Controllers
 {
@@ -20,11 +23,6 @@ namespace HotelProject.WebUI.Controllers
         }
 
         public PartialViewResult NavHeaderPartial() 
-        {
-            return PartialView();
-        }
-
-        public PartialViewResult HeaderPartial()
         {
             return PartialView();
         }

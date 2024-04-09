@@ -72,7 +72,32 @@
                                         <span asp-validation-for="Mail" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
-                                        <input asp-for=City type="text" class="form-control" placeholder="Şehir">
+                                        <div class="form-check form-check-inline">
+                                            <input asp-for=Gender class="form-check-input" type="radio" value="Kadın">
+                                            <label class="form-check-label">Kadın</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input asp-for=Gender class="form-check-input" type="radio" value="Erkek">
+                                            <label class="form-check-label">Erkek</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <select asp-for=Country id="country" class="form-control">
+                                            <option value="0">Ülke Seçiniz</option>
+                                            <option value="Türkiye">Türkiye</option>
+                                            <option value="İngiltere">İngiltere</option>
+                                            <option value="İspanya">İspanya</option>
+                                            <option value="İtalya">İtalya</option>
+                                            <option value="Almanya">Almanya</option>
+                                            <option value="Fransa">Fransa</option>
+                                            <option value="Diğer">Diğer</option>
+                                        </select>
+                                        <span asp-validation-for="Country" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <select asp-for=City id="city" class="form-control">
+                                            <option value="0">Şehir Seçiniz</option>
+                                        </select>
                                         <span asp-validation-for="City" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
@@ -112,3 +137,35 @@
     <script src="~/adminweb/js/styleSwitcher.js"></script>
 </body>
 </html>
+
+<script>
+    var citiesByCountry = {
+        Türkiye: ["İstanbul", "Ankara", "İzmir", "Antalya", "Diğer"],
+        İngiltere: ["Londra", "Manchester", "Liverpool", "Southampton", "Diğer"],
+        İspanya: ["Madrid", "Barcelona", "Sevilla", "Bilbao", "Diğer"],
+        İtalya: ["Milano", "Roma", "Floransa", "Napoli", "Diğer"],
+        Almanya: ["Münih", "Berlin", "Köln", "Bremen", "Diğer"],
+        Fransa: ["Paris", "Lyon", "Marsilya", "Lille", "Diğer"],
+        Diğer: ["Diğer"]
+    };
+
+    document.getElementById("country").addEventListener("change", function () {
+        var country = this.value;
+        var citySelect = document.getElementById("city");
+        citySelect.innerHTML = "";
+        if (country !== "0") {
+            var cities = citiesByCountry[country];
+            cities.forEach(function (city) {
+                var option = document.createElement("option");
+                option.text = city;
+                option.value = city;
+                citySelect.appendChild(option);
+            });
+        } else {
+            var option = document.createElement("option");
+            option.text = "Şehir Seçiniz";
+            option.value = "0";
+            citySelect.appendChild(option);
+        }
+    });
+</script>

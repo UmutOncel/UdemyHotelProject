@@ -42,12 +42,17 @@ namespace HotelProject.WebUI.Controllers
                 user.ImageUrl = await _imageHelper.UploadImage(settingDTO.Username, settingDTO.Photo, "appUser");
             }
 
-            user.Name = settingDTO.Firstname;
-            user.Surname = settingDTO.Lastname;
-            user.Email = settingDTO.Email;
-            user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, settingDTO.Password);
-            await _userManager.UpdateAsync(user);
-            return RedirectToAction("Index", "Login");
+            var result = await _userManager.ChangePasswordAsync(user, settingDTO.CurrentPassword, settingDTO.NewPassword);
+            if (result.Succeeded)
+            {
+                user.Name = settingDTO.Firstname;
+                user.Surname = settingDTO.Lastname;
+                user.Email = settingDTO.Email;
+                user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, settingDTO.NewPassword);
+                await _userManager.UpdateAsync(user);
+                return RedirectToAction("Index", "Login");
+            }
+            return View();
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿<div class="header">
+﻿@model ResultAppUserListDTO
+
+<div class="header">
     <div class="header-content clearfix">
 
         <div class="nav-control">
@@ -6,18 +8,18 @@
                 <span class="toggle-icon"><i class="icon-menu"></i></span>
             </div>
         </div>
-        
+
         <div class="header-right">
             <ul class="clearfix">
-                <li class="icons dropdown">
+                <li class="icons dropdown mt-2">
                     <a asp-controller="Default" asp-action="Index">
                         <i class="icon-plane menu-icon"></i>
                     </a>
                 </li>
                 <li class="icons dropdown">
-                    <div class="user-img c-pointer position-relative" data-toggle="dropdown">
-                        <span class="activity active"></span>
-                        <img src="~/adminweb/images/avatar/Profil Pic.jpg" height="40" width="40" alt="">
+                    <div class="user-img c-pointer position-relative mt-4" data-toggle="dropdown">
+                        <img src="@Model.ImageUrl" height="40" width="40" alt="@Model.Name @Model.Surname">
+                        <label class="ml-1 mr-2" style="font-weight: bold">@Model.Name @Model.Surname</label>
                     </div>
                     <div class="drop-down dropdown-profile   dropdown-menu">
                         <div class="dropdown-content-body">
