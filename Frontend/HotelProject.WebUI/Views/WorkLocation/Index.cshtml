@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/AdminLayout/_AdminLayout.cshtml";
+    int counter = 0;
 }
 
 <div class="col-lg-12">
@@ -16,6 +17,7 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
+                            <th>#</th>
                             <th>Lokasyon Adı</th>
                             <th>Şehir</th>
                             <th>Güncelle</th>
@@ -25,7 +27,9 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
+                            counter++;
                             <tr>
+                                <td>@counter</td>
                                 <td>@item.Name</td>
                                 <td>@item.City</td>
                                 <td>

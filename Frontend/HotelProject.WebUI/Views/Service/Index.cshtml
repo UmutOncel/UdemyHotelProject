@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/AdminLayout/_AdminLayout.cshtml";
+    int counter = 0;
 }
 
 <div class="col-lg-12">
@@ -16,6 +17,7 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
+                            <th>#</th>
                             <th>Başlık</th>
                             <th>Güncelle</th>
                             <th>Sil</th>
@@ -24,7 +26,9 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
+                            counter++;
                             <tr>
+                                <td>@counter</td>
                                 <td>@item.Title</td>
                                 <td>
                                     <a asp-controller="Service" asp-action="UpdateService" asp-route-id="@item.ServiceID" type="button" class="btn mb-1 btn-rounded btn-outline-warning">Güncelle</a>
