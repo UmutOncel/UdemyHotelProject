@@ -23,23 +23,8 @@ namespace HotelProject.WebUI.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("http://localhost:31289/api/WorkLocation");
-            if (responseMessage.IsSuccessStatusCode) 
-            { 
-                var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultWorkLocationDTO>>(jsonData);
-                List<SelectListItem> workLocationList = (from x in values
-                                                         select new SelectListItem
-                                                         {
-                                                             Text = x.Name,
-                                                             Value = x.WorkLocationID.ToString()
-                                                         }).ToList();
-                ViewBag.WorkLocationList = workLocationList;
-                return View();
-            }
             return View();
         }
 
@@ -63,13 +48,21 @@ namespace HotelProject.WebUI.Controllers
                 WorkLocationId = addNewUserDTO.WorkLocationId,
                 ImageUrl = addNewUserDTO.ImageUrl
             };
-            //Şifre eşleştirmesi yukarıda yazılmıyor. "UserManager"ın kendi metodu olan "CreateAsync" kullanılıyor.
+            //Şifre eşleştirmesi yukarıda yazılmıyor. "UserManager"ın kendi metodu olan "CreateAsync" kullanılıyor. Bu metot şifrenin Identity kriterlerine uygunluğunu denetliyor. Eğer uygunsa başarılı değilse başarısız dönüş yapıyor.
             var result = await _userManager.CreateAsync(appUser, addNewUserDTO.Password);
             if (result.Succeeded)
             {
                 return RedirectToAction("Index", "Login");
             }
-            return View();
+            else
+            {
+                ModelState.AddModelError("", "Şifreniz istenen kriterlere uygun değil!");
+                ModelState.AddModelError("", "Şifreniz en az 6 karakter içermeli.");
+                ModelState.AddModelError("", "Şifreniz en az 1 özel karakter içermeli.");
+                ModelState.AddModelError("", "Şifreniz en az 1 büyük harf içermeli.");
+                ModelState.AddModelError("", "Şifreniz en az 1 küçük harf içermeli.");
+                return View();
+            }
         }
     }
 }

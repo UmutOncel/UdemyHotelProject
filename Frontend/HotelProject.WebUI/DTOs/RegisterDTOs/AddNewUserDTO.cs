@@ -32,7 +32,7 @@ namespace HotelProject.WebUI.DTOs.RegisterDTOs
         [Required(ErrorMessage = "Cinsiyet alanı boş bırakılamaz!")]
         public string Gender { get; set; }
 
-        public int WorkLocationId { get; set; }
+        public int WorkLocationId { get; set; } = 6;
 
         public string ImageUrl { get; set; } = "/adminweb/images/avatar/Profil Pic.jpg";
     }

@@ -36,10 +36,11 @@ namespace HotelProject.WebUI.Controllers
                 }
                 else
                 {
-                    return View();
+                    ModelState.AddModelError("", "Kullanıcı adı ile şifre uyumsuz. Lütfen bilgilerinizi kontrol ediniz.");
+                    return View();  //kullanıcı adı ile şifre eşleşmezse
                 }
             }
-            return View();
+            return View();  //boş geçilirse
         }
 
         public async Task<IActionResult> SignOut() 

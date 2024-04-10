@@ -17,19 +17,6 @@
                         @await Html.PartialAsync("/Views/AdminContact/AdminContactCategorySidebarPartial.cshtml")
                     </div>
                     <div class="email-right-box">
-                        <div class="toolbar" role="toolbar">
-                            <div class="btn-group m-b-20">
-                                <button type="button" class="btn btn-light">
-                                    <i class="fa fa-archive"></i>
-                                </button>
-                                <button type="button" class="btn btn-light">
-                                    <i class="fa fa-exclamation-circle"></i>
-                                </button>
-                                <button type="button" class="btn btn-light">
-                                    <i class="fa fa-trash"></i>
-                                </button>
-                            </div>
-                        </div>
                         <div class="compose-content mt-5">
                             <form asp-controller="AdminContact" asp-action="AddSendMessage" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
