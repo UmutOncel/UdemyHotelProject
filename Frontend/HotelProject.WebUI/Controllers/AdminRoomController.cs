@@ -41,6 +41,11 @@ namespace HotelProject.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> AddRoom(AddRoomDTO addRoomDTO) 
         {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
             addRoomDTO.RoomCoverImage = await _imageHelper.UploadImage(addRoomDTO.Title, addRoomDTO.Image, "room");
 
             var client = _httpClientFactory.CreateClient();

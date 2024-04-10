@@ -36,10 +36,14 @@ namespace HotelProject.WebUI.Controllers
         public async Task<IActionResult> Index(SettingDTO settingDTO)
         {
             var user = await _userManager.FindByNameAsync(User.Identity.Name);
-
+          
             if (settingDTO.Photo != null)
             {
                 user.ImageUrl = await _imageHelper.UploadImage(settingDTO.Username, settingDTO.Photo, "appUser");
+            }
+            else
+            {
+                settingDTO.ImageUrl = user.ImageUrl;
             }
 
             var result = await _userManager.ChangePasswordAsync(user, settingDTO.CurrentPassword, settingDTO.NewPassword);
@@ -52,7 +56,15 @@ namespace HotelProject.WebUI.Controllers
                 await _userManager.UpdateAsync(user);
                 return RedirectToAction("Index", "Login");
             }
-            return View();
+            else
+            {
+                ModelState.AddModelError("", "Şifreniz istenen kriterlere uygun değil!");
+                ModelState.AddModelError("", "Şifreniz en az 6 karakter içermeli.");
+                ModelState.AddModelError("", "Şifreniz en az 1 özel karakter içermeli.");
+                ModelState.AddModelError("", "Şifreniz en az 1 büyük harf içermeli.");
+                ModelState.AddModelError("", "Şifreniz en az 1 küçük harf içermeli.");
+                return View(settingDTO);
+            }
         }
     }
 }
