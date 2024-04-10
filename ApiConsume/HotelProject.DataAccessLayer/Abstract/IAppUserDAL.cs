@@ -12,5 +12,6 @@ namespace HotelProject.DataAccessLayer.Abstract
     {
         List<AppUserDTO> GetUserListWithWorkLocation();
         int GetAppUserCount();
+        Task<AppUserDetailsDTO> GetUserWithRoleAndWorkLocation(int id);
     }
 }

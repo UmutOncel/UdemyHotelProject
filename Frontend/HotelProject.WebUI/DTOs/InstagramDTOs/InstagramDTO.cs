@@ -2,12 +2,22 @@
 {
     public class InstagramDTO
     {
-        public User user { get; set; }
+        public Data data { get; set; }
 
-        public class User
+        public class Data
         {
-            public int follower_count { get; set; }
-            public int following_count { get; set; }
+            public Edge_Followed_By edge_followed_by { get; set; }
+            public Edge_Follow edge_follow { get; set; }
+        }
+
+        public class Edge_Followed_By
+        {
+            public int count { get; set; }
+        }
+
+        public class Edge_Follow
+        {
+            public int count { get; set; }
         }
     }
 }

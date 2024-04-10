@@ -15,8 +15,11 @@ namespace HotelProject.DataAccessLayer.EntityFramework
 {
     public class EfAppUserDAL : GenericRepository<AppUser>, IAppUserDAL
     {
-        public EfAppUserDAL(HotelProjectDbContext context) : base(context)
+        private readonly UserManager<AppUser> _userManager;
+
+        public EfAppUserDAL(HotelProjectDbContext context, UserManager<AppUser> userManager) : base(context)
         {
+            _userManager = userManager;
         }
 
         public int GetAppUserCount()
@@ -44,6 +47,33 @@ namespace HotelProject.DataAccessLayer.EntityFramework
                                           WorkLocationName = y.WorkLocation.Name
                                       }).ToList();
             return values;
+        }
+
+        public async Task<AppUserDetailsDTO> GetUserWithRoleAndWorkLocation(int id)
+        {
+            var user = await _userManager.FindByIdAsync(id.ToString());
+            var userRoles = await _userManager.GetRolesAsync(user);
+            
+            HotelProjectDbContext context = new HotelProjectDbContext();
+            //tek veri olmasına rağmen liste şeklinde döndürüyor. o yüzden ToList() yaptık.
+            var workLocationName = context.WorkLocations.Where(x => x.WorkLocationID == user.WorkLocationId)
+                                                        .Select(x => x.Name)
+                                                        .ToList();
+            
+            AppUserDetailsDTO appUserDetailsDTO = new AppUserDetailsDTO
+            {
+                Name = user.Name,
+                Surname = user.Surname,
+                Username = user.UserName,
+                City = user.City,
+                Country = user.Country,
+                Gender = user.Gender,
+                Email = user.Email,
+                ImageUrl = user.ImageUrl,
+                WorkLocationName = workLocationName,
+                AppRoles = userRoles.ToList()
+            };
+            return appUserDetailsDTO;
         }
     }
 }

@@ -19,6 +19,7 @@
                         <tr>
                             <th>#</th>
                             <th>Başlık</th>
+                            <th>Detaylar</th>
                             <th>Güncelle</th>
                             <th>Sil</th>
                         </tr>
@@ -30,6 +31,9 @@
                             <tr>
                                 <td>@counter</td>
                                 <td>@item.Title</td>
+                                <td>
+                                    <a asp-controller="Service" asp-action="DetailsService" asp-route-id="@item.ServiceID" type="button" class="btn mb-1 btn-rounded btn-outline-dark">Detaylar</a>
+                                </td>
                                 <td>
                                     <a asp-controller="Service" asp-action="UpdateService" asp-route-id="@item.ServiceID" type="button" class="btn mb-1 btn-rounded btn-outline-warning">Güncelle</a>
                                 </td>

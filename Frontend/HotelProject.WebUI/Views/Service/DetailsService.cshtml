@@ -1,42 +1,38 @@
-﻿@model UpdateServiceDTO
+﻿@model DetailsServiceDTO
 
 @{
-    ViewData["Title"] = "UpdateService";
+    ViewData["Title"] = "DetailsService";
     Layout = "~/Views/AdminLayout/_AdminLayout.cshtml";
 }
 
-<form asp-controller="Service" asp-action="UpdateService" method="post" enctype="multipart/form-data">
+<form>
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Hizmeti Güncelle</h4>
+                <h4 class="card-title">@Model.Title İsimli Hizmetin Detayları</h4>
                 <div class="basic-form">
                     <form>
-                        <input type="hidden" asp-for="ServiceID">
                         <div class="form-group row">
                             <label asp-for=ServiceIcon class="col-sm-2 col-form-label">Hizmet İkonu:</label>
                             <div class="col-sm-10">
-                                <input asp-for=ServiceIcon type="text" class="form-control input-rounded" placeholder="Hizmet İkonu">
+                                <i class="@Model.ServiceIcon"></i>
                             </div>
-                            <span asp-validation-for="ServiceIcon" class="text-danger offset-sm-2"></span>
                         </div>
                         <div class="form-group row">
                             <label asp-for=Title class="col-sm-2 col-form-label">Başlık:</label>
                             <div class="col-sm-10">
-                                <input asp-for=Title type="text" class="form-control input-rounded" placeholder="Başlık">
+                                <input asp-for=Title type="text" class="form-control input-rounded" placeholder="Başlık" disabled>
                             </div>
-                            <span asp-validation-for="Title" class="text-danger offset-sm-2"></span>
                         </div>
                         <div class="form-group row">
                             <label asp-for=Description class="col-sm-2 col-form-label">Açıklama:</label>
                             <div class="col-sm-10">
-                                <textarea asp-for=Description class="form-control rounded h-100px" rows="5" placeholder="Açıklama"></textarea>
+                                <textarea asp-for=Description class="form-control rounded h-100px" rows="5" placeholder="Açıklama" disabled></textarea>
                             </div>
-                            <span asp-validation-for="Description" class="text-danger offset-sm-2"></span>
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-10">
-                                <button type="submit" class="btn mb-1 btn-rounded btn-outline-info">Güncelle</button>
+                                <a asp-controller="Service" asp-action="Index" class="btn mb-1 btn-rounded btn-outline-info">Geri Dön</a>
                             </div>
                         </div>
                     </form>

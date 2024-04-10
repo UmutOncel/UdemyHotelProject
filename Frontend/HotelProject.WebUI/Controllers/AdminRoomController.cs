@@ -32,6 +32,19 @@ namespace HotelProject.WebUI.Controllers
             return View();
         }
 
+        public async Task<IActionResult> RoomDetails(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var responseMessage = await client.GetAsync($"http://localhost:31289/api/Room/{id}");
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var jsonData = await responseMessage.Content.ReadAsStringAsync();
+                var value = JsonConvert.DeserializeObject<DetailsRoomDTO>(jsonData);
+                return View(value);
+            }
+            return View();
+        }
+
         [HttpGet]
         public IActionResult AddRoom() 
         {

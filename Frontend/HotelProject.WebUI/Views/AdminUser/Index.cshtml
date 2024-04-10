@@ -25,6 +25,7 @@
                                     <th>Ülke</th>
                                     <th>Cinsiyet</th>
                                     <th>Şube</th>
+                                    <th>Detaylar</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -54,6 +55,9 @@
                                         </td>
                                         <td>
                                             <span>@item.WorkLocationName</span>
+                                        </td>
+                                        <td>
+                                            <a asp-controller="AdminUser" asp-action="DetailsAppUser" asp-route-id="@item.Id" type="button" class="btn mb-1 btn-rounded btn-outline-dark">Detaylar</a>
                                         </td>
                                     </tr>
                                 }

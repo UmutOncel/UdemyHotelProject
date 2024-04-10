@@ -12,5 +12,6 @@ namespace HotelProject.BusinessLayer.Abstract
     {
         List<AppUserDTO> TGetUserListWithWorkLocation();
         int TGetAppUserCount();
+        Task<AppUserDetailsDTO> TGetUserWithRoleAndWorkLocation(int id);
     }
 }

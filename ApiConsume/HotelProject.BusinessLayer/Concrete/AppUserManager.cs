@@ -44,6 +44,11 @@ namespace HotelProject.BusinessLayer.Concrete
             return _appUserDAL.GetUserListWithWorkLocation();
         }
 
+        public Task<AppUserDetailsDTO> TGetUserWithRoleAndWorkLocation(int id)
+        {
+            return _appUserDAL.GetUserWithRoleAndWorkLocation(id);
+        }
+
         public void TInsert(AppUser t)
         {
             _appUserDAL.Insert(t);

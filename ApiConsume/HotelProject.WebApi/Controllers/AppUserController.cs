@@ -15,7 +15,6 @@ namespace HotelProject.WebApi.Controllers
             _appUserService = appUserService;
         }
 
-
         //Include işleminden dönen veri çok büyük olduğu için hata veriyor. Bunu engellemek için API projesi içine "Microsoft.AspNetCore.Mvc.NewtonsoftJson" nuget'i yüklenir. Sonra API program.cs içine gerekli kodlar yazılır.
         [HttpGet]
         public IActionResult GetUserListWithWorkLocation() 
@@ -29,6 +28,13 @@ namespace HotelProject.WebApi.Controllers
         {
             var values = _appUserService.TGetList();
             return Ok(values);
+        }
+
+        [HttpGet("GetUserWithRoleAndWorkLocation/{id}")]
+        public async Task<IActionResult> GetUserWithRoleAndWorkLocation(int id) 
+        {
+            var value = await _appUserService.TGetUserWithRoleAndWorkLocation(id);
+            return Ok(value);
         }
     }
 }
