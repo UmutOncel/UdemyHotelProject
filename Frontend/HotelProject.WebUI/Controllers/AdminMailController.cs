@@ -1,10 +1,12 @@
 ﻿using HotelProject.WebUI.Models.Mail;
 using MailKit.Net.Smtp;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MimeKit;
 
 namespace HotelProject.WebUI.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminMailController : Controller
     {
         [HttpGet]

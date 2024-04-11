@@ -7,6 +7,7 @@ namespace HotelProject.WebUI.DTOs.RoomDTOs
         [Required(ErrorMessage = "Oda numarası boş bırakılamaz.")]
         public string RoomNumber { get; set; }
 
+        [Required(ErrorMessage = "Oda görseli boş bırakılamaz.")]
         public string RoomCoverImage { get; set; }
 
         [Required(ErrorMessage = "Oda görseli boş bırakılamaz.")]

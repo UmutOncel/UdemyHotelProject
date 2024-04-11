@@ -1,10 +1,12 @@
 ﻿using HotelProject.WebUI.DTOs.BookingDTOs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text;
 
 namespace HotelProject.WebUI.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminBookingController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;

@@ -1,11 +1,13 @@
 ﻿using HotelProject.EntityLayer.Concrete;
 using HotelProject.WebUI.DTOs.SettingDTOs;
 using HotelProject.WebUI.Helpers.Images;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HotelProject.WebUI.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class SettingController : Controller
     {
         private readonly UserManager<AppUser> _userManager;

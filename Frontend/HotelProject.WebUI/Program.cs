@@ -38,6 +38,7 @@ builder.Services.ConfigureApplicationCookie(opt =>
     opt.Cookie.HttpOnly = true;
     opt.ExpireTimeSpan = TimeSpan.FromMinutes(20);      //yetkilendirme 20 dakika sürsün.
     opt.LoginPath = "/Login/Index";                     //proje açýlýnca direkt login sayfasý gelsin.
+    opt.AccessDeniedPath = "/ErrorPage/AccessDenied";
 });
 
 

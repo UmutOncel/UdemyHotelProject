@@ -2,6 +2,7 @@
 using HotelProject.WebUI.DTOs.SendMessageDTOs;
 using HotelProject.WebUI.Models.Mail;
 using MailKit.Net.Smtp;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MimeKit;
 using Newtonsoft.Json;
@@ -9,6 +10,7 @@ using System.Text;
 
 namespace HotelProject.WebUI.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminContactController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;

@@ -1,4 +1,5 @@
-﻿using HotelProject.EntityLayer.Concrete;
+﻿using HotelProject.DataAccessLayer.Concrete;
+using HotelProject.EntityLayer.Concrete;
 using HotelProject.WebUI.DTOs.RegisterDTOs;
 using HotelProject.WebUI.DTOs.WorkLocationDTOs;
 using Microsoft.AspNetCore.Authorization;
@@ -14,12 +15,13 @@ namespace HotelProject.WebUI.Controllers
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly IHttpClientFactory _httpClientFactory;
+        private readonly HotelProjectDbContext _context;
 
-        public RegisterController(UserManager<AppUser> userManager, IHttpClientFactory httpClientFactory)
+        public RegisterController(UserManager<AppUser> userManager, IHttpClientFactory httpClientFactory, HotelProjectDbContext context)
         {
             _userManager = userManager;
             _httpClientFactory = httpClientFactory;
-
+            _context = context;
         }
 
         [HttpGet]
@@ -52,6 +54,15 @@ namespace HotelProject.WebUI.Controllers
             var result = await _userManager.CreateAsync(appUser, addNewUserDTO.Password);
             if (result.Succeeded)
             {
+                //Kaydolan kullanıcıya default olarak "Member" rolünü atadık DTO içinde. Çoka çok ilişki olduğu için burada ID'leri UserRoles tablosu içine atayıp kaydediyoruz.
+                IdentityUserRole<int> userRole = new IdentityUserRole<int>()
+                {
+                    UserId = appUser.Id,
+                    RoleId = addNewUserDTO.RoleId
+                };
+                _context.UserRoles.Add(userRole);
+                _context.SaveChanges();
+
                 return RedirectToAction("Index", "Login");
             }
             else

@@ -1,6 +1,7 @@
 ﻿using HotelProject.EntityLayer.Concrete;
 using HotelProject.WebUI.DTOs.AboutDTOs;
 using HotelProject.WebUI.DTOs.AppUserDTOs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -8,6 +9,7 @@ using System.Security.Policy;
 
 namespace HotelProject.WebUI.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminUserController : Controller
     {
         //private readonly UserManager<AppUser> _userManager;

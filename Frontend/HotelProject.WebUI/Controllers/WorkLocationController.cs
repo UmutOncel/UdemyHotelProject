@@ -1,10 +1,12 @@
 ﻿using HotelProject.WebUI.DTOs.WorkLocationDTOs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text;
 
 namespace HotelProject.WebUI.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class WorkLocationController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;

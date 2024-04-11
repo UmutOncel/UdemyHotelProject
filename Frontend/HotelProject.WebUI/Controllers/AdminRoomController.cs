@@ -1,6 +1,7 @@
 ﻿using HotelProject.WebUI.DTOs.AboutDTOs;
 using HotelProject.WebUI.DTOs.RoomDTOs;
 using HotelProject.WebUI.Helpers.Images;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR.Protocol;
 using Newtonsoft.Json;
@@ -8,6 +9,7 @@ using System.Text;
 
 namespace HotelProject.WebUI.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminRoomController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
@@ -54,11 +56,6 @@ namespace HotelProject.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> AddRoom(AddRoomDTO addRoomDTO) 
         {
-            if (!ModelState.IsValid)
-            {
-                return View();
-            }
-
             addRoomDTO.RoomCoverImage = await _imageHelper.UploadImage(addRoomDTO.Title, addRoomDTO.Image, "room");
 
             var client = _httpClientFactory.CreateClient();
